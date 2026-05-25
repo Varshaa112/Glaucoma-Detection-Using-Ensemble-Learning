@@ -25,19 +25,19 @@ train_n = len(os.listdir(os.path.join(data_path, 'train/normal')))
 test_g = len(os.listdir(os.path.join(data_path, 'test/glaucoma')))
 test_n = len(os.listdir(os.path.join(data_path, 'test/normal')))
 
-print("📊 YOUR COMPLETE DATASET")
+print("  COMPLETE DATASET")
 print("="*50)
-print(f"\n📁 TRAINING SET:")
+print(f"\nTRAINING SET:")
 print(f"   Glaucoma: {train_g} images")
 print(f"   Normal:   {train_n} images")
 print(f"   Total:    {train_g + train_n} images")
 
-print(f"\n📁 TEST SET:")
+print(f"\nTEST SET:")
 print(f"   Glaucoma: {test_g} images")
 print(f"   Normal:   {test_n} images")
 print(f"   Total:    {test_g + test_n} images")
 
-print(f"\n🎯 GRAND TOTAL: {train_g + train_n + test_g + test_n} images")
+print(f"\n GRAND TOTAL: {train_g + train_n + test_g + test_n} images")
 print(f"   (Glaucoma: {train_g + test_g}, Normal: {train_n + test_n})")
 
 #glaucoma train images
@@ -46,7 +46,7 @@ PROJECT_PATH = '/content/drive5/MyDrive/glaucoma_project'
 data_path = os.path.join(PROJECT_PATH, 'data')
 
 train_g = len(os.listdir(os.path.join(data_path, 'train/glaucoma')))
-print(f"✅ You have {train_g} glaucoma images ready!")
+print(f" You have {train_g} glaucoma images ready!")
 
 #whenever drive changes to drive3 drive 4 first mount with other and then run this and next cell
 from google.colab import drive
@@ -56,18 +56,18 @@ import os
 PROJECT_PATH = '/content/drive5/MyDrive/glaucoma_project'
 PROCESSED_PATH = '/content/drive5/MyDrive/glaucoma_project/processed_data/'
 
-print(f"✅ Drive mounted!")
-print(f"✅ Checking processed_data...")
+print(f" Drive mounted!")
+print(f" Checking processed_data...")
 
 if os.path.exists(PROCESSED_PATH):
-    print(f"✅ processed_data exists!")
-    print(f"📂 Contents: {os.listdir(PROCESSED_PATH)}")
+    print(f"processed_data exists!")
+    print(f" Contents: {os.listdir(PROCESSED_PATH)}")
 
     if os.path.exists(PROCESSED_PATH + 'train'):
         train_count = len(os.listdir(PROCESSED_PATH + 'train/glaucoma'))
-        print(f"✅ Train glaucoma images: {train_count}")
+        print(f" Train glaucoma images: {train_count}")
 else:
-    print(f"❌ processed_data not found at: {PROCESSED_PATH}")
+    print(f"processed_data not found at: {PROCESSED_PATH}")
 
 # CELL 1 - Update all paths to use drive4
 PROJECT_PATH = '/content/drive5/MyDrive/glaucoma_project'
@@ -93,19 +93,19 @@ print("="*60)
 
 def explore_folder(path, indent=0):
     if not os.path.exists(path):
-        print(f"❌ Not found: {path}")
+        print(f" Not found: {path}")
         return
     items = os.listdir(path)
     for item in sorted(items)[:10]:  # Show first 10
         item_path = os.path.join(path, item)
         if os.path.isdir(item_path):
-            print('  ' * indent + f"📁 {item}/")
+            print('  ' * indent + f" {item}/")
             # Show what's inside (next level)
             subitems = os.listdir(item_path)[:5]
             for sub in subitems:
                 sub_path = os.path.join(item_path, sub)
                 if os.path.isdir(sub_path):
-                    print('  ' * (indent+1) + f"📁 {sub}/")
+                    print('  ' * (indent+1) + f" {sub}/")
                 else:
                     size = os.path.getsize(sub_path) / (1024*1024)
                     print('  ' * (indent+1) + f"📄 {sub} ({size:.1f} MB)")
@@ -115,7 +115,7 @@ def explore_folder(path, indent=0):
     if len(items) > 10:
         print('  ' * indent + f"... and {len(items)-10} more items")
 
-print(f"\n📂 Contents of ODIR_original:")
+print(f"\n Contents of ODIR_original:")
 explore_folder(raw_path)
 
 # Count total images
@@ -126,7 +126,7 @@ for root, dirs, files in os.walk(raw_path):
         if file.lower().endswith(('.jpg', '.png', '.jpeg')):
             image_count += 1
 
-print(f"\n📊 TOTAL IMAGES FOUND: {image_count}")
+print(f"\n TOTAL IMAGES FOUND: {image_count}")
 
 # STEP 3: WE'LL RUN THIS AFTER SEEING THE STRUCTURE
 import os
@@ -141,7 +141,7 @@ data_path = os.path.join(PROJECT_PATH, 'data')
 for folder in ['train/glaucoma', 'train/normal', 'test/glaucoma', 'test/normal']:
     os.makedirs(os.path.join(data_path, folder), exist_ok=True)
 
-print("✅ Created data folders")
+print(" Created data folders")
 
 # We'll add the actual organizing code here
 # after you run STEP 2 and show me the output
@@ -157,16 +157,16 @@ print("="*60)
 
 def explore_folder(path, indent=0, max_depth=3):
     if not os.path.exists(path):
-        print(f"❌ Not found: {path}")
+        print(f" Not found: {path}")
         return
     try:
         items = os.listdir(path)
-        print('  ' * indent + f"📁 {os.path.basename(path)}/ ({len(items)} items)")
+        print('  ' * indent + f" {os.path.basename(path)}/ ({len(items)} items)")
 
         for item in sorted(items)[:15]:  # Show first 15
             item_path = os.path.join(path, item)
             if os.path.isdir(item_path):
-                print('  ' * (indent+1) + f"📁 {item}/")
+                print('  ' * (indent+1) + f" {item}/")
                 if indent < max_depth:
                     # Show what's inside (one more level)
                     try:
@@ -174,34 +174,34 @@ def explore_folder(path, indent=0, max_depth=3):
                         for sub in subitems:
                             sub_path = os.path.join(item_path, sub)
                             if os.path.isdir(sub_path):
-                                print('  ' * (indent+2) + f"📁 {sub}/")
+                                print('  ' * (indent+2) + f" {sub}/")
                             else:
                                 if sub.lower().endswith(('.jpg', '.png', '.jpeg')):
-                                    print('  ' * (indent+2) + f"🖼️ {sub}")
+                                    print('  ' * (indent+2) + f" {sub}")
                                 else:
-                                    print('  ' * (indent+2) + f"📄 {sub}")
+                                    print('  ' * (indent+2) + f"{sub}")
                     except:
                         pass
             else:
                 if item.lower().endswith(('.jpg', '.png', '.jpeg')):
                     size = os.path.getsize(item_path) / (1024*1024)
-                    print('  ' * (indent+1) + f"🖼️ {item} ({size:.1f} MB)")
+                    print('  ' * (indent+1) + f" {item} ({size:.1f} MB)")
                 elif item.endswith('.zip'):
                     size = os.path.getsize(item_path) / (1024*1024)
-                    print('  ' * (indent+1) + f"📦 {item} ({size:.1f} MB)")
+                    print('  ' * (indent+1) + f" {item} ({size:.1f} MB)")
                 else:
                     size = os.path.getsize(item_path) / (1024*1024)
-                    print('  ' * (indent+1) + f"📄 {item} ({size:.1f} MB)")
+                    print('  ' * (indent+1) + f"{item} ({size:.1f} MB)")
 
         if len(items) > 15:
             print('  ' * (indent+1) + f"... and {len(items)-15} more items")
     except Exception as e:
-        print('  ' * indent + f"⚠️ Error: {e}")
+        print('  ' * indent + f" Error: {e}")
 
 explore_folder(raw_path)
 
 # Count total images
-print("\n🔍 Counting all images...")
+print("\nCounting all images...")
 image_count = 0
 image_locations = {}
 
@@ -214,14 +214,14 @@ for root, dirs, files in os.walk(raw_path):
                 image_locations[folder] = 0
             image_locations[folder] += 1
 
-print(f"\n📊 TOTAL IMAGES FOUND: {image_count}")
+print(f"\n TOTAL IMAGES FOUND: {image_count}")
 
 if image_count > 0:
-    print("\n📂 Images by folder:")
+    print("\n Images by folder:")
     for folder, count in image_locations.items():
         print(f"   {folder}: {count} images")
 
-print("\n✅ Exploration complete! Now I can help you organize this dataset.")
+print("\n Exploration complete! Now I can help you organize this dataset.")
 
 # STEP 5: ORGANIZE DATASET PROPERLY
 import os
@@ -242,12 +242,12 @@ data_path = os.path.join(PROJECT_PATH, 'data')
 for folder in ['train/glaucoma', 'train/normal', 'test/glaucoma', 'test/normal']:
     os.makedirs(os.path.join(data_path, folder), exist_ok=True)
 
-print("📁 Created data folders")
+print(" Created data folders")
 
 # ============================================
 # STEP 1: Check for CSV with labels
 # ============================================
-print("\n🔍 Looking for label files...")
+print("\n Looking for label files...")
 csv_files = []
 for root, dirs, files in os.walk(raw_path):
     for file in files:
@@ -255,7 +255,7 @@ for root, dirs, files in os.walk(raw_path):
             csv_files.append(os.path.join(root, file))
 
 if csv_files:
-    print(f"✅ Found {len(csv_files)} CSV files:")
+    print(f" Found {len(csv_files)} CSV files:")
     for csv_file in csv_files:
         print(f"   📄 {csv_file}")
         try:
@@ -269,24 +269,24 @@ if csv_files:
                     print(f"      🎯 Potential label column: '{col}'")
                     print(f"      Unique values: {df[col].unique()[:5]}")
         except:
-            print(f"      ❌ Could not read CSV")
+            print(f"       Could not read CSV")
 
 # ============================================
 # STEP 2: Since we don't have clear labels,
 # let's use folder structure to separate
 # ============================================
-print("\n📋 Organizing images based on folder names...")
+print("\n Organizing images based on folder names...")
 
 # Function to copy images with label
 def copy_images_with_label(source_folder, label, dest_train, dest_test, split=0.8):
     if not os.path.exists(source_folder):
-        print(f"   ❌ Folder not found: {source_folder}")
+        print(f"   Folder not found: {source_folder}")
         return 0
 
     images = [f for f in os.listdir(source_folder)
               if f.lower().endswith(('.jpg', '.png', '.jpeg'))]
 
-    print(f"   📂 Found {len(images)} images in {os.path.basename(source_folder)}")
+    print(f"   Found {len(images)} images in {os.path.basename(source_folder)}")
 
     if len(images) == 0:
         return 0
@@ -322,14 +322,14 @@ for root, dirs, files in os.walk(raw_path):
         full_path = os.path.join(root, dir_name)
         if 'glaucoma' in dir_name.lower() or 'g' == dir_name.lower() or 'positive' in dir_name.lower():
             glaucoma_folders.append(full_path)
-            print(f"✅ Found potential GLAUCOMA folder: {full_path}")
+            print(f"Found potential GLAUCOMA folder: {full_path}")
         elif 'normal' in dir_name.lower() or 'n' == dir_name.lower() or 'healthy' in dir_name.lower() or 'negative' in dir_name.lower():
             normal_folders.append(full_path)
-            print(f"✅ Found potential NORMAL folder: {full_path}")
+            print(f"Found potential NORMAL folder: {full_path}")
 
 # If we couldn't identify, use preprocessed_images as normal and ODIR-5K as glaucoma (temporary)
 if len(glaucoma_folders) == 0 and len(normal_folders) == 0:
-    print("\n⚠️ No clear glaucoma/normal folders found. Using default assignment:")
+    print("\n No clear glaucoma/normal folders found. Using default assignment:")
     print("   - preprocessed_images → NORMAL (temporary)")
     print("   - ODIR-5K → GLAUCOMA (temporary)")
 
@@ -354,7 +354,7 @@ if len(glaucoma_folders) == 0 and len(normal_folders) == 0:
 # STEP 3: Copy images to organized folders
 # ============================================
 print("\n" + "="*60)
-print("📋 COPYING IMAGES TO ORGANIZED FOLDERS")
+print(" COPYING IMAGES TO ORGANIZED FOLDERS")
 print("="*60)
 
 total_glaucoma = 0
@@ -384,7 +384,7 @@ for folder in normal_folders:
 # STEP 4: Verify the organized dataset
 # ============================================
 print("\n" + "="*60)
-print("📊 VERIFYING ORGANIZED DATASET")
+print(" VERIFYING ORGANIZED DATASET")
 print("="*60)
 
 train_g = len(os.listdir(os.path.join(data_path, 'train/glaucoma')))
@@ -392,29 +392,29 @@ train_n = len(os.listdir(os.path.join(data_path, 'train/normal')))
 test_g = len(os.listdir(os.path.join(data_path, 'test/glaucoma')))
 test_n = len(os.listdir(os.path.join(data_path, 'test/normal')))
 
-print(f"\n📁 TRAINING SET:")
+print(f"\n TRAINING SET:")
 print(f"   Glaucoma: {train_g} images")
 print(f"   Normal:   {train_n} images")
 print(f"   Total:    {train_g + train_n} images")
 
-print(f"\n📁 TEST SET:")
+print(f"\n TEST SET:")
 print(f"   Glaucoma: {test_g} images")
 print(f"   Normal:   {test_n} images")
 print(f"   Total:    {test_g + test_n} images")
 
-print(f"\n🎯 GRAND TOTAL: {train_g + train_n + test_g + test_n} images")
+print(f"\n GRAND TOTAL: {train_g + train_n + test_g + test_n} images")
 
 if train_g > 1000 and train_n > 1000 and test_g > 200 and test_n > 200:
-    print("\n✅✅✅ PERFECT! Dataset is well-balanced and ready!")
-    print("\n🎯 Next step: Run Objective 1 - Preprocessing")
+    print("\n PERFECT! Dataset is well-balanced and ready!")
+    print("\n Next step: Run Objective 1 - Preprocessing")
 else:
-    print("\n⚠️ Dataset needs rebalancing. Let me adjust...")
+    print("\n Dataset needs rebalancing. Let me adjust...")
 
     # If too imbalanced, balance the dataset
     min_train = min(train_g, train_n)
     min_test = min(test_g, test_n)
 
-    print(f"\n🔄 Balancing dataset to {min_train} train and {min_test} test each...")
+    print(f"\n Balancing dataset to {min_train} train and {min_test} test each...")
 
     # Code to balance would go here
 
@@ -444,7 +444,7 @@ os.makedirs(PROCESSED_PATH + 'train/normal', exist_ok=True)
 os.makedirs(PROCESSED_PATH + 'test/glaucoma', exist_ok=True)
 os.makedirs(PROCESSED_PATH + 'test/normal', exist_ok=True)
 
-print("📁 Folders created for processed images!")
+print(" Folders created for processed images!")
 
 # ============================================
 # PREPROCESSING FUNCTIONS
@@ -485,20 +485,20 @@ def process_dataset(source_folder, dest_folder, class_name):
             processed += 1
 
             if (i + 1) % 1000 == 0:
-                print(f"   ✅ Processed {i + 1}/{len(images)} images")
+                print(f"    Processed {i + 1}/{len(images)} images")
 
-    print(f"   ✅ Done! Processed {processed} images")
+    print(f"    Done! Processed {processed} images")
     return processed
 
 # ============================================
 # PROCESS ALL IMAGES
 # ============================================
 print("\n" + "="*60)
-print("🚀 STARTING IMAGE PREPROCESSING")
+print(" STARTING IMAGE PREPROCESSING")
 print("="*60)
 
 # Process training data
-print("\n📁 TRAINING DATA:")
+print("\n TRAINING DATA:")
 train_glaucoma = process_dataset(
     os.path.join(PROJECT_PATH, 'data/train'),
     PROCESSED_PATH + 'train',
@@ -512,7 +512,7 @@ train_normal = process_dataset(
 )
 
 # Process test data
-print("\n📁 TEST DATA:")
+print("\n TEST DATA:")
 test_glaucoma = process_dataset(
     os.path.join(PROJECT_PATH, 'data/test'),
     PROCESSED_PATH + 'test',
@@ -571,25 +571,25 @@ test_generator = test_datagen.flow_from_directory(
     shuffle=False
 )
 
-print(f"\n📊 Training samples: {train_generator.samples}")
-print(f"📊 Validation samples: {validation_generator.samples}")
-print(f"📊 Test samples: {test_generator.samples}")
+print(f"\n Training samples: {train_generator.samples}")
+print(f" Validation samples: {validation_generator.samples}")
+print(f" Test samples: {test_generator.samples}")
 
 # ============================================
 # SUMMARY
 # ============================================
 print("\n" + "="*60)
-print("📊 PREPROCESSING SUMMARY")
+print(" PREPROCESSING SUMMARY")
 print("="*60)
 
-print(f"\n✅ Training Glaucoma: {train_glaucoma} images")
-print(f"✅ Training Normal: {train_normal} images")
-print(f"✅ Test Glaucoma: {test_glaucoma} images")
-print(f"✅ Test Normal: {test_normal} images")
-print(f"\n🎯 TOTAL PROCESSED: {train_glaucoma + train_normal + test_glaucoma + test_normal} images")
+print(f"\n Training Glaucoma: {train_glaucoma} images")
+print(f" Training Normal: {train_normal} images")
+print(f"Test Glaucoma: {test_glaucoma} images")
+print(f" Test Normal: {test_normal} images")
+print(f"\n TOTAL PROCESSED: {train_glaucoma + train_normal + test_glaucoma + test_normal} images")
 
 print("\n" + "="*60)
-print("🎉 OBJECTIVE 1 COMPLETE! READY FOR OBJECTIVE 2!")
+print(" OBJECTIVE 1 COMPLETE! READY FOR OBJECTIVE 2!")
 print("="*60)
 
 
@@ -633,7 +633,7 @@ os.makedirs(RESULTS_PATH, exist_ok=True)
 # Check GPU
 print(f"GPU Available: {tf.config.list_physical_devices('GPU')}")
 print(f"TensorFlow version: {tf.__version__}")
-print("✅ Setup complete!")
+print(" Setup complete!")
 
 # CELL 1: SETUP (Run this before any other cells)
 import tensorflow as tf
@@ -656,7 +656,7 @@ import os
 PROJECT_PATH = '/content/drive4/MyDrive/glaucoma_project'
 PROCESSED_PATH = os.path.join(PROJECT_PATH, 'processed_data')
 
-print(f"📂 Loading data from: {PROCESSED_PATH}")
+print(f" Loading data from: {PROCESSED_PATH}")
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
@@ -699,10 +699,10 @@ test_generator = test_datagen.flow_from_directory(
     shuffle=False
 )
 
-print(f"\n📊 Training samples: {train_generator.samples}")
-print(f"📊 Validation samples: {validation_generator.samples}")
-print(f"📊 Test samples: {test_generator.samples}")
-print("✅ Data loaded!")
+print(f"\n Training samples: {train_generator.samples}")
+print(f" Validation samples: {validation_generator.samples}")
+print(f" Test samples: {test_generator.samples}")
+print(" Data loaded!")
 
 # OBJECTIVE 2 - CELL 2: LOAD DATA (FIXED) old
 import os
@@ -713,17 +713,17 @@ PROCESSED_PATH = os.path.join(PROJECT_PATH, 'processed_data')
 
 # Check if path exists
 if not os.path.exists(PROCESSED_PATH + 'train'):
-    print(f"❌ Path not found: {PROCESSED_PATH + 'train'}")
+    print(f" Path not found: {PROCESSED_PATH + 'train'}")
     # Try alternative path
     alt_path = '/content/drive4/MyDrive/glaucoma_project/processed_data'
     if os.path.exists(alt_path + 'train'):
         PROCESSED_PATH = alt_path
-        print(f"✅ Using alternative path: {PROCESSED_PATH}")
+        print(f" Using alternative path: {PROCESSED_PATH}")
     else:
-        print("❌ Processed data not found! Please check your Drive.")
+        print(" Processed data not found! Please check your Drive.")
         exit()
 
-print("📂 Loading preprocessed data...")
+print(" Loading preprocessed data...")
 print(f"Using path: {PROCESSED_PATH}")
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -767,13 +767,13 @@ test_generator = test_datagen.flow_from_directory(
     shuffle=False
 )
 
-print(f"\n📊 Training samples: {train_generator.samples}")
-print(f"📊 Validation samples: {validation_generator.samples}")
-print(f"📊 Test samples: {test_generator.samples}")
-print("✅ Data loaded!")
+print(f"\nTraining samples: {train_generator.samples}")
+print(f" Validation samples: {validation_generator.samples}")
+print(f" Test samples: {test_generator.samples}")
+print(" Data loaded!")
 
 # OBJECTIVE 2 - CELL 3: BUILD RESNET50
-print("🏗️ Building ResNet50 model...")
+print(" Building ResNet50 model...")
 
 def create_resnet50():
     base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
@@ -791,7 +791,7 @@ def create_resnet50():
     return model
 
 resnet_model = create_resnet50()
-print("✅ ResNet50 built!")
+print(" ResNet50 built!")
 
 # OBJECTIVE 2 - CELL 4: TRAIN RESNET50
 print(" Training ResNet50...")
@@ -883,16 +883,16 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-print("🤝 Creating Ensemble Model...")
+print(" Creating Ensemble Model...")
 
 # Load best models
 resnet_model = keras.models.load_model(f'{MODELS_PATH}/resnet50_best.h5')
 efficientnet_model = keras.models.load_model(f'{MODELS_PATH}/efficientnet_best.h5')
 
-print("✅ Models loaded!")
+print(" Models loaded!")
 
 # Get predictions
-print("\n🔮 Getting predictions...")
+print("\n Getting predictions...")
 test_generator.reset()
 resnet_pred = resnet_model.predict(test_generator, verbose=1)
 efficient_pred = efficientnet_model.predict(test_generator, verbose=1)
@@ -902,7 +902,7 @@ efficient_pred = efficient_pred.flatten()
 y_true = test_generator.classes
 
 # Try different ensemble weights
-print("\n⚖️ Testing different ensemble weights...")
+print("\n Testing different ensemble weights...")
 best_accuracy = 0
 best_weight = 0
 
@@ -917,7 +917,7 @@ for weight in np.arange(0.1, 1.0, 0.1):
         best_weight = weight
 
 # Use best weights
-print(f"\n🏆 Best weight: EfficientNet {best_weight:.1f}, ResNet {1-best_weight:.1f}")
+print(f"\n Best weight: EfficientNet {best_weight:.1f}, ResNet {1-best_weight:.1f}")
 ensemble_probs = resnet_pred * (1-best_weight) + efficient_pred * best_weight
 ensemble_pred = (ensemble_probs > 0.5).astype(int)
 
@@ -931,13 +931,13 @@ f1 = f1_score(y_true, ensemble_pred)
 auc = roc_auc_score(y_true, ensemble_probs)
 
 print("\n" + "="*60)
-print("📊 ENSEMBLE FINAL RESULTS")
+print(" ENSEMBLE FINAL RESULTS")
 print("="*60)
-print(f"\n🎯 Accuracy:  {accuracy:.4f} ({accuracy*100:.2f}%)")
-print(f"🎯 Precision: {precision:.4f}")
-print(f"🎯 Recall:    {recall:.4f}")
-print(f"🎯 F1-Score:  {f1:.4f}")
-print(f"🎯 AUC-ROC:   {auc:.4f}")
+print(f"\n Accuracy:  {accuracy:.4f} ({accuracy*100:.2f}%)")
+print(f" Precision: {precision:.4f}")
+print(f" Recall:    {recall:.4f}")
+print(f" F1-Score:  {f1:.4f}")
+print(f" AUC-ROC:   {auc:.4f}")
 
 # Confusion Matrix
 cm = confusion_matrix(y_true, ensemble_pred)
@@ -952,9 +952,9 @@ print("\n📋 Classification Report:")
 print(classification_report(y_true, ensemble_pred, target_names=['Normal', 'Glaucoma']))
 
 if accuracy >= 0.90:
-    print("\n✅✅✅ TARGET ACHIEVED! 90%+ ACCURACY!")
+    print("\n TARGET ACHIEVED! 90%+ ACCURACY!")
 else:
-    print("\n⚠️ Slightly below 90%. Fine-tuning available if needed.")
+    print("\n Slightly below 90%. Fine-tuning available if needed.")
 
 
 
@@ -986,8 +986,8 @@ PROCESSED_PATH = '/content/drive5/MyDrive/glaucoma_project/processed_data/'
 
 os.makedirs(XAI_PATH, exist_ok=True)
 
-print("✅ XAI libraries installed!")
-print(f"📁 XAI outputs will be saved in: {XAI_PATH}")
+print(" XAI libraries installed!")
+print(f" XAI outputs will be saved in: {XAI_PATH}")
 
 # OBJECTIVE 3 - CELL 2 (FIXED): LOAD MODELS AND TEST DATA
 print(" Loading models and test data...")
@@ -999,7 +999,7 @@ PROCESSED_PATH = '/content/drive5/MyDrive/glaucoma_project/processed_data/'
 # Load best models
 resnet_model = tf.keras.models.load_model(f'{MODELS_PATH}/resnet50_best.h5')
 efficientnet_model = tf.keras.models.load_model(f'{MODELS_PATH}/efficientnet_best.h5')
-print("✅ Models loaded!")
+print(" Models loaded!")
 
 # Load test data
 test_datagen = ImageDataGenerator()
@@ -1109,7 +1109,7 @@ for i, (img, label) in enumerate(zip(all_images, all_labels)):
 test_generator.reset()
 
 # OBJECTIVE 3 - CELL 4: GRAD-CAM IMPLEMENTATION
-print("🔍 Implementing Grad-CAM...")
+print(" Implementing Grad-CAM...")
 
 def make_gradcam_heatmap(img_array, model, last_conv_layer_name):
     """Create Grad-CAM heatmap"""
@@ -1196,7 +1196,7 @@ for layer in reversed(resnet_base.layers):
         last_conv = layer.name
         break
 
-print(f"\n✅ Last convolutional layer: {last_conv}")
+print(f"\n Last convolutional layer: {last_conv}")
 
 # CELL: FIND CORRECT LAYER NAMES
 print("🔍 Finding ResNet50 layer names...")
@@ -1204,7 +1204,7 @@ for i, layer in enumerate(resnet_model.layers):
     if 'conv' in layer.name or 'block' in layer.name:
         print(f"ResNet layer {i}: {layer.name}")
 
-print("\n🔍 Finding EfficientNet layer names...")
+print("\nFinding EfficientNet layer names...")
 for i, layer in enumerate(efficientnet_model.layers):
     print(f"EfficientNet layer {i}: {layer.name}")
 
@@ -1226,7 +1226,7 @@ for layer in reversed(resnet_base.layers):
         last_conv = layer.name
         break
 
-print(f"\n✅ Last convolutional layer: {last_conv}")
+print(f"\n Last convolutional layer: {last_conv}")
 
 
 
@@ -1335,10 +1335,10 @@ def get_stage_by_filename(filename):
     else:
 
         if "0_NORMAL" in filename or "1_NORMAL" in filename:
-            return "NORMAL","✅ No glaucoma detected"
+            return "NORMAL"," No glaucoma detected"
 
         else:
-            return "SUSPICIOUS","🟢 Regular monitoring required"
+            return "SUSPICIOUS","Regular monitoring required"
 
 
 # ----------------------------------------------------
@@ -1520,16 +1520,16 @@ def get_stage_by_filename(filename):
     """Assign different stages based on filename"""
     if "GLAUCOMA" in filename:
         if "2_GLAUCOMA" in filename:
-            return "ADVANCED GLAUCOMA", "🔴 Immediate surgery required", "LARGE red area covering entire disc"
+            return "ADVANCED GLAUCOMA", " Immediate surgery required", "LARGE red area covering entire disc"
         elif "3_GLAUCOMA" in filename:
-            return "MODERATE GLAUCOMA", "🟠 Start medication", "Medium red area, cup enlargement visible"
+            return "MODERATE GLAUCOMA", "Start medication", "Medium red area, cup enlargement visible"
         else:
-            return "EARLY GLAUCOMA", "🟡 Preventive treatment", "Small red area, early cup changes"
+            return "EARLY GLAUCOMA", " Preventive treatment", "Small red area, early cup changes"
     else:
         if "0_NORMAL" in filename or "1_NORMAL" in filename:
-            return "NORMAL", "✅ No signs of glaucoma", "Minimal red area, normal cup size"
+            return "NORMAL", "No signs of glaucoma", "Minimal red area, normal cup size"
         else:
-            return "SUSPICIOUS", "🟢 Regular screening", "Moderate red area, needs monitoring"
+            return "SUSPICIOUS", " Regular screening", "Moderate red area, needs monitoring"
 
 # Calculate red area percentage
 def calculate_red_area(heatmap):
@@ -1542,7 +1542,7 @@ def calculate_red_area(heatmap):
 sample_images = sorted([f for f in os.listdir(XAI_PATH) if f.startswith('sample_')])
 
 print("\n" + "="*70)
-print("📊 GLAUCOMA DETECTION RESULTS (ENSEMBLE: 90.24% ACCURACY)")
+print(" GLAUCOMA DETECTION RESULTS (ENSEMBLE: 90.24% ACCURACY)")
 print("="*70)
 
 for img_file in sample_images:
@@ -1565,7 +1565,7 @@ for img_file in sample_images:
     # Calculate red area percentage
     red_area_pct = calculate_red_area(heatmap)
 
-    print(f"\n📸 {img_file}")
+    print(f"\n {img_file}")
     print(f"   Diagnosis: {stage}")
     print(f"   Recommendation: {recommendation}")
     print(f"   Heatmap: {heatmap_desc}")
@@ -1610,7 +1610,7 @@ for img_file in sample_images:
     axes[2].text(0.1, 0.25, f"Ensemble Accuracy: 90.24%", fontsize=10, transform=axes[2].transAxes)
 
     # Add explanation of heatmap
-    axes[2].text(0.1, 0.1, "🔴 Red = High Risk Area", fontsize=9, transform=axes[2].transAxes)
+    axes[2].text(0.1, 0.1, " Red = High Risk Area", fontsize=9, transform=axes[2].transAxes)
 
     plt.tight_layout()
     plt.show()
@@ -1626,7 +1626,7 @@ print("""
 | GLAUCOMA | MODERATE | 25-40% | Large red area covering disc |
 | GLAUCOMA | ADVANCED | >40% | Red spreads to disc edges |
 
-🔴 KEY INSIGHT:
+ KEY INSIGHT:
    - NORMAL: Small concentrated red (normal cup)
    - GLAUCOMA: Large spreading red (enlarged cup)
    - The MORE RED, the MORE SEVERE the glaucoma
@@ -1667,12 +1667,12 @@ PROJECT_PATH = '/content/drive5/MyDrive/glaucoma_project'
 XAI_PATH = os.path.join(PROJECT_PATH, 'xai_outputs')
 MODELS_PATH = os.path.join(PROJECT_PATH, 'models')
 
-print("📂 Loading EfficientNet model...")
+print(" Loading EfficientNet model...")
 efficientnet_model = tf.keras.models.load_model(
     os.path.join(MODELS_PATH, 'efficientnet_best.h5'),
     compile=False
 )
-print("✅ Model loaded!")
+print(" Model loaded!")
 
 # Initialize LIME explainer
 explainer = lime_image.LimeImageExplainer()
@@ -1682,16 +1682,16 @@ def get_stage_by_filename(filename):
     """Assign different stages based on filename"""
     if "GLAUCOMA" in filename:
         if "2_GLAUCOMA" in filename:
-            return "ADVANCED GLAUCOMA", "🔴 Immediate surgery required", "Large green area (supports glaucoma)"
+            return "ADVANCED GLAUCOMA", " Immediate surgery required", "Large green area (supports glaucoma)"
         elif "3_GLAUCOMA" in filename:
-            return "MODERATE GLAUCOMA", "🟠 Start medication", "Medium green area (cup enlargement)"
+            return "MODERATE GLAUCOMA", " Start medication", "Medium green area (cup enlargement)"
         else:
-            return "EARLY GLAUCOMA", "🟡 Preventive treatment", "Small green area (early changes)"
+            return "EARLY GLAUCOMA", " Preventive treatment", "Small green area (early changes)"
     else:
         if "0_NORMAL" in filename or "1_NORMAL" in filename:
-            return "NORMAL", "✅ No signs of glaucoma", "Minimal green area (normal cup)"
+            return "NORMAL", "No signs of glaucoma", "Minimal green area (normal cup)"
         else:
-            return "SUSPICIOUS", "🟢 Regular screening", "Moderate green area, needs monitoring"
+            return "SUSPICIOUS", " Regular screening", "Moderate green area, needs monitoring"
 
 # Calculate green area percentage (supports prediction)
 def calculate_green_area(mask):
@@ -1785,25 +1785,25 @@ for img_file in sample_images:
 
     # LIME Explanation (Positive only - Green)
     axes[1].imshow(mark_boundaries(temp/255.0, mask))
-    axes[1].set_title(f'LIME Explanation\n{stage}\n🟢 Green = Supports Prediction')
+    axes[1].set_title(f'LIME Explanation\n{stage}\n Green = Supports Prediction')
     axes[1].axis('off')
 
     # LIME Explanation (Both Positive and Negative)
     axes[2].imshow(mark_boundaries(temp2/255.0, mask2))
-    axes[2].set_title(f'Complete Explanation\n🟢 Green = For | 🔴 Red = Against\nRed Area: {100-green_area:.1f}%')
+    axes[2].set_title(f'Complete Explanation\n Green = For |  Red = Against\nRed Area: {100-green_area:.1f}%')
     axes[2].axis('off')
 
     plt.tight_layout()
     plt.show()
 
 print("\n" + "="*70)
-print("📊 HOW TO READ LIME EXPLANATIONS:")
+print("HOW TO READ LIME EXPLANATIONS:")
 print("="*70)
 print("""
 ┌─────────────────────────────────────────────────────────────────────┐
 │  LIME COLOR MEANING:                                                │
-│  🟢 GREEN areas = Evidence that SUPPORTS the prediction             │
-│  🔴 RED areas = Evidence that OPPOSES the prediction                │
+│     GREEN areas = Evidence that SUPPORTS the prediction             │
+│     RED areas = Evidence that OPPOSES the prediction                │
 ├─────────────────────────────────────────────────────────────────────┤
 │  FOR NORMAL EYES:                                                   │
 │  - Small green area (normal cup structure)                          │
@@ -1822,9 +1822,9 @@ print("""
 └─────────────────────────────────────────────────────────────────────┘
 """)
 
-print("\n✅ LIME explanations complete!")
-print("   - 🟢 GREEN: Evidence FOR the diagnosis")
-print("   - 🔴 RED: Evidence AGAINST the diagnosis")
+print("\n LIME explanations complete!")
+print("   -  GREEN: Evidence FOR the diagnosis")
+print("   -  RED: Evidence AGAINST the diagnosis")
 print("   - More GREEN = More confident diagnosis")
 
 # PROFESSIONAL XAI IMAGE GENERATOR (No Grad-CAM/LIME errors)
@@ -1844,12 +1844,12 @@ XAI_PATH = os.path.join(PROJECT_PATH, 'xai_outputs')
 SAVE_PATH = '/content/drive5/MyDrive/glaucoma_app/static/xai/'
 
 os.makedirs(SAVE_PATH, exist_ok=True)
-print(f"✅ Save folder: {SAVE_PATH}")
+print(f" Save folder: {SAVE_PATH}")
 
 # ============================================
 # LOAD MODEL
 # ============================================
-print("📂 Loading model...")
+print("Loading model...")
 model = tf.keras.models.load_model(
     os.path.join(MODELS_PATH, 'efficientnet_best.h5'),
     compile=False
@@ -1858,7 +1858,7 @@ model = tf.keras.models.load_model(
 # Build model
 dummy = np.zeros((1, 224, 224, 3))
 _ = model(dummy)
-print("✅ Model loaded!")
+print(" Model loaded!")
 
 # Get sample images
 sample_images = [f for f in os.listdir(XAI_PATH) if f.endswith('.png')]
@@ -1929,7 +1929,7 @@ def create_xai_image(img_path, title, description, save_name):
 
     # Save image
     cv2.imwrite(save_name, cv2.cvtColor(canvas, cv2.COLOR_RGB2BGR))
-    print(f"   ✅ Saved: {save_name}")
+    print(f"    Saved: {save_name}")
 
     return canvas
 
@@ -1976,12 +1976,12 @@ def create_gradcam_style(img_path, label, save_name):
         cv2.putText(canvas, explanation, (500, 130), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 150, 0), 1)
 
     # Legend
-    cv2.putText(canvas, "🔴 RED = High Risk / Cup Area", (500, 250), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
-    cv2.putText(canvas, "🟡 YELLOW = Moderate Risk", (500, 280), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
-    cv2.putText(canvas, "🟢 GREEN = Normal / Rim Area", (500, 310), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
+    cv2.putText(canvas, " RED = High Risk / Cup Area", (500, 250), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
+    cv2.putText(canvas, " YELLOW = Moderate Risk", (500, 280), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
+    cv2.putText(canvas, " GREEN = Normal / Rim Area", (500, 310), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
 
     cv2.imwrite(save_name, cv2.cvtColor(canvas, cv2.COLOR_RGB2BGR))
-    print(f"   ✅ Saved: {save_name}")
+    print(f"    Saved: {save_name}")
 
 # ============================================
 # CREATE LIME STYLE IMAGES
@@ -2015,17 +2015,17 @@ def create_lime_style(img_path, label, save_name):
     cv2.putText(canvas, "LIME EXPLANATION: " + label, (500, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
 
     if "GLAUCOMA" in label:
-        explanation = "🟢 GREEN areas (cup region) = Evidence FOR Glaucoma\n🔴 RED areas (rim) = Evidence AGAINST Glaucoma"
+        explanation = " GREEN areas (cup region) = Evidence FOR Glaucoma\n🔴 RED areas (rim) = Evidence AGAINST Glaucoma"
         cv2.putText(canvas, explanation, (500, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
     else:
-        explanation = "🟢 GREEN areas = Evidence FOR Normal\nNo significant red areas detected"
+        explanation = " GREEN areas = Evidence FOR Normal\nNo significant red areas detected"
         cv2.putText(canvas, explanation, (500, 140), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
 
-    cv2.putText(canvas, "🟢 GREEN = Supports Diagnosis", (500, 250), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 150, 0), 1)
-    cv2.putText(canvas, "🔴 RED = Opposes Diagnosis", (500, 280), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 0, 0), 1)
+    cv2.putText(canvas, "GREEN = Supports Diagnosis", (500, 250), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 150, 0), 1)
+    cv2.putText(canvas, " RED = Opposes Diagnosis", (500, 280), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 0, 0), 1)
 
     cv2.imwrite(save_name, cv2.cvtColor(canvas, cv2.COLOR_RGB2BGR))
-    print(f"   ✅ Saved: {save_name}")
+    print(f"    Saved: {save_name}")
 
 # ============================================
 # GENERATE ALL XAI IMAGES
@@ -2035,7 +2035,7 @@ print("GENERATING XAI IMAGES")
 print("="*50)
 
 if glaucoma_img:
-    print("\n📸 Creating GLAUCOMA XAI images...")
+    print("\n Creating GLAUCOMA XAI images...")
 
     # Get prediction
     img = cv2.imread(glaucoma_img)
@@ -2054,7 +2054,7 @@ if glaucoma_img:
                      SAVE_PATH + 'xai_glaucoma.png')
 
 if normal_img:
-    print("\n📸 Creating NORMAL XAI images...")
+    print("\nCreating NORMAL XAI images...")
 
     # Get prediction
     img = cv2.imread(normal_img)
@@ -2073,12 +2073,12 @@ if normal_img:
                      SAVE_PATH + 'xai_normal.png')
 
 print("\n" + "="*50)
-print("✅ ALL IMAGES SAVED TO:")
+print(" ALL IMAGES SAVED TO:")
 print(f"   {SAVE_PATH}")
 print("="*50)
 
 # List files
-print("\n📁 Files created:")
+print("\n Files created:")
 for f in os.listdir(SAVE_PATH):
     if f.endswith('.png'):
         print(f"   📄 {f}")
@@ -2203,14 +2203,14 @@ plt.show()
 
 print("\n📊 Our MODEL OUTPERFORMS ALL THESE PUBLISHED STUDIES:")
 print("="*60)
-print(f"✅ Our Accuracy: 90.24%")
-print(f"✅ Higher than Costa et al. (2025) by: +5.24%")
-print(f"✅ Higher than Gomez-Valverde et al. (2019) by: +2.74%")
-print(f"✅ Higher than Li et al. (2020) by: +1.94%")
-print(f"✅ Higher than Raghavendra et al. (2018) by: +1.04%")
-print(f"✅ Higher than Shoukat et al. (2021) by: +3.74%")
-print(f"✅ Higher than Kim et al. (2022) by: +1.24%")
-print(f"✅ Higher than Abbas et al. (2021) by: +2.34%")
+print(f" Our Accuracy: 90.24%")
+print(f" Higher than Costa et al. (2025) by: +5.24%")
+print(f" Higher than Gomez-Valverde et al. (2019) by: +2.74%")
+print(f" Higher than Li et al. (2020) by: +1.94%")
+print(f" Higher than Raghavendra et al. (2018) by: +1.04%")
+print(f" Higher than Shoukat et al. (2021) by: +3.74%")
+print(f" Higher than Kim et al. (2022) by: +1.24%")
+print(f" Higher than Abbas et al. (2021) by: +2.34%")
 print("="*60)
 
 
