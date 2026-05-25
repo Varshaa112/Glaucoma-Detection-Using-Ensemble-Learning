@@ -16,6 +16,6 @@ Pretrained CNN models such as ResNet50 and EfficientNetB3 are used for classific
 - EfficientNetB3
 - Ensemble Learning
 
-- ## Explainable AI Techniques
+## Explainable AI Techniques
 - Grad-CAM
 - LIME
